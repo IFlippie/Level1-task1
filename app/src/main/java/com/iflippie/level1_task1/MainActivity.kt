@@ -1,0 +1,77 @@
+package com.iflippie.level1_task1
+
+import androidx.appcompat.app.AppCompatActivity
+import android.os.Bundle
+import android.widget.Toast
+import kotlinx.android.synthetic.main.activity_higher_lower.*
+
+class MainActivity : AppCompatActivity() {
+    private var currentThrow: Int = 1
+    private var lastThrow: Int = 1
+
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        setContentView(R.layout.activity_higher_lower)
+        initViews()
+    }
+
+    private fun initViews()
+    {
+        btnLower.setOnClickListener { onLowerClick() }
+        btnEquals.setOnClickListener { onEqualClick() }
+        btnHigher.setOnClickListener { onHigherClick() }
+        updateUI()
+    }
+
+    private fun onLowerClick()
+    {
+        rollDice()
+        if (currentThrow < lastThrow) onAnswerCorrect()
+        else onAnswerIncorrect()
+    }
+
+
+    private fun onEqualClick()
+    {
+        rollDice()
+        if (currentThrow == lastThrow) onAnswerCorrect()
+        else onAnswerIncorrect()
+    }
+
+
+    private fun onHigherClick()
+    {
+        rollDice()
+        if (currentThrow > lastThrow) onAnswerCorrect()
+        else onAnswerIncorrect()
+    }
+
+
+    private fun updateUI()
+    {
+        lastThrowText.text = getString(R.string.last_Throw, lastThrow)
+        when (currentThrow) {
+            1 -> diceImage.setImageResource(R.drawable.dice1)
+            2 -> diceImage.setImageResource(R.drawable.dice2)
+            3 -> diceImage.setImageResource(R.drawable.dice3)
+            4 -> diceImage.setImageResource(R.drawable.dice4)
+            5 -> diceImage.setImageResource(R.drawable.dice5)
+            6 -> diceImage.setImageResource(R.drawable.dice6)
+        }
+
+    }
+
+    private fun rollDice()
+    {
+        lastThrow = currentThrow
+        currentThrow = (1..6).random()
+        updateUI()
+    }
+
+    private fun onAnswerIncorrect() {
+        Toast.makeText(this, getString(R.string.incorrect), Toast.LENGTH_SHORT).show()
+    }
+    private fun onAnswerCorrect() {
+        Toast.makeText(this, getString(R.string.correct), Toast.LENGTH_SHORT).show()
+    }
+}
