@@ -3,4 +3,8 @@
     <string name="last_Throw">Last Throw: %d</string>
     <string name="incorrect">incorrect</string>
     <string name="correct">correct</string>
+    <string name="guess_if_the_next_throw_is_going_to_be_lower_equal_or_higher">Guess if the next throw is going to be lower, equal or higher</string>
+    <string name="lower">Lower</string>
+    <string name="equals">Equals</string>
+    <string name="higher">Higher</string>
 </resources>
